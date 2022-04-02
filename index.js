@@ -47,7 +47,7 @@ app.use(cors(
 )
 )
 app.use((req, res, next) => {
-  const allowedOrigins = ['http://localhost:3000', ''];
+  const allowedOrigins = ['http://localhost:3000', 'https://twitclonefrontend.herokuapp.com/'];
   
   const origin = req.headers.origin;
   console.log(origin)
