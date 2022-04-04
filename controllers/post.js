@@ -4,7 +4,7 @@ const User = require("../models/User");
 
 //create a post
 router.post("/", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const newPost = new Post(req.body);
   try {
     const savedPost = await newPost.save();
@@ -17,12 +17,13 @@ router.post("/", async (req, res) => {
 
 //update a post
 router.put("/:id/update", async (req, res) => {
-  console.log(req.body)
+  console.log(req.body, 'update')
   try {
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findOneAndUpdate({_id: req.params.id} , req.body, {new: true});
+    console.log(post)
     if (post.userId === req.body.userId) {
-      let p = await post.updateOne({ $set: req.body });
-      if (p) {
+      // let p = await post.updateOne({ $set: req.body });
+      if (post) {
         res.status(200).json("this post has been updated.");
       }
     } else {
