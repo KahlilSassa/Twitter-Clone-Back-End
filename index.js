@@ -47,15 +47,12 @@ app.use(cors(
 )
 )
 app.use((req, res, next) => {
-  const allowedOrigins = ['http://localhost:3000', 'https://twitclonefrontend.herokuapp.com/'];
+  const allowedOrigins = ['http://localhost:3000', 'https://twitclonefrontend.herokuapp.com/', ''];
   
   const origin = req.headers.origin;
   console.log(origin)
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  } else {
-    res.setHeader('Access-Control-Allow-Origin', '');
-  }
+  res.setHeader('Access-Control-Allow-Origin', origin);
+
   return next();
 });
 
